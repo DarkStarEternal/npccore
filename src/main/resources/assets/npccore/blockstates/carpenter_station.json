@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "facing = north": {
+      "model": "npccore:block/carpenter_station"
+    }
+  }
+}

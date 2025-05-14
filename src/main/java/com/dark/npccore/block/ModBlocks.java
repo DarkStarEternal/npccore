@@ -1,6 +1,7 @@
 package com.dark.npccore.block;
 
 import com.dark.npccore.Npccore;
+import com.dark.npccore.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

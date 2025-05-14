@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "bottom": "minecraft:block/oak_planks",
+    "left": "minecraft:block/oak_log",
+    "right": "minecraft:block/oak_log",
+    "front": "minecraft:block/oak_log_top",
+    "back": "minecraft:block/oak_top",
+    "top": "minecraft:block/crafting_table_top"
+  }
+}
