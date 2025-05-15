@@ -1,6 +1,7 @@
 package com.dark.npccore;
 
 import com.dark.npccore.block.ModBlocks;
+import com.dark.npccore.entity.ModEntities;
 import com.dark.npccore.item.ModCreativeModTabs;
 import com.dark.npccore.item.ModItems;
 import com.mojang.logging.LogUtils;
@@ -36,6 +37,7 @@ public class Npccore {
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
