@@ -2,10 +2,13 @@ package com.dark.npccore;
 
 import com.dark.npccore.block.ModBlocks;
 import com.dark.npccore.entity.ModEntities;
+import com.dark.npccore.entity.client.FemaleHumanRenderer;
+import com.dark.npccore.entity.custom.FemaleHumanEntity;
 import com.dark.npccore.item.ModCreativeModTabs;
 import com.dark.npccore.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -79,6 +82,7 @@ public class Npccore {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            EntityRenderers.register(ModEntities.HUMANFEMALE.get(), FemaleHumanRenderer::new);
         }
     }
 }
