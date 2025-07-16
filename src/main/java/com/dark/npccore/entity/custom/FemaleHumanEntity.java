@@ -12,6 +12,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.event.RenderNameTagEvent;
 import org.jetbrains.annotations.Nullable;
 
 public class FemaleHumanEntity extends Monster {
@@ -34,7 +35,6 @@ public class FemaleHumanEntity extends Monster {
                 .add(Attributes.FOLLOW_RANGE, 2)
                 .add(Attributes.ATTACK_DAMAGE, 1);
     }
-
 
     @Override
     public boolean alwaysAccepts() {

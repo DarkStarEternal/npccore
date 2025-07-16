@@ -4,5 +4,7 @@
   "block.npccore.carpenter_station": "Carpenter Station",
 
   "creativetab.npccoreblocks": "NPCcore Blocks",
-  "creativetab.npccoreitems": "NPCcore Items"
+  "creativetab.npccoreitems": "NPCcore Items",
+  "key.npccore.keyup": "Chatline up",
+  "key.categories.npccore": "Npccore"
 }
