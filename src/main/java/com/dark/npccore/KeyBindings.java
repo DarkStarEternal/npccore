@@ -13,8 +13,8 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 public class KeyBindings {
-    public static final KeyMapping UP_TO_CHAT_LINE = new KeyMapping("key.npccore.keyup", GLFW.GLFW_KEY_UP, "key.categories.npccore");
-    public static final KeyMapping DOWN_TO_CHAT_LINE = new KeyMapping("key.npccore.keydown", GLFW.GLFW_KEY_DOWN, "key.categories.npccore");
+    public static final KeyMapping UP_TO_CHAT_LINE = new KeyMapping("key.npccore.keyup", GLFW.GLFW_KEY_PAGE_UP, "key.categories.npccore");
+    public static final KeyMapping DOWN_TO_CHAT_LINE = new KeyMapping("key.npccore.keydown", GLFW.GLFW_KEY_PAGE_DOWN, "key.categories.npccore");
 
     @SubscribeEvent
     public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
@@ -31,21 +31,3 @@ public class KeyBindings {
         }
     }
 }
-
-
-/*public class KeyBindings {
-    public static KeyMapping chatUpKey;
-
-    public static void register() {
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modBus.addListener((RegisterKeyMappingsEvent event) -> {
-            chatUpKey = new KeyMapping(
-                    "key.npccore.keyup", // translation key
-                    GLFW.GLFW_KEY_UP,       // arrow_up
-                    "key.categories.npccore"
-            );
-            event.register(chatUpKey);
-        });
-    }
-}
-*/
