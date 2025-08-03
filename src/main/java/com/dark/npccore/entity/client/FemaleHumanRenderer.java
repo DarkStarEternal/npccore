@@ -1,6 +1,7 @@
 package com.dark.npccore.entity.client;
 
 import com.dark.npccore.Npccore;
+import com.dark.npccore.client.event.NpcReactionManager;
 import com.dark.npccore.entity.custom.FemaleHumanEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -10,11 +11,17 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.Map;
+import java.util.Random;
+
 
 public class FemaleHumanRenderer extends MobRenderer<FemaleHumanEntity, FemaleHumanModel<FemaleHumanEntity>> {
     public FemaleHumanRenderer(EntityRendererProvider.Context pContext) {
         super(pContext, new FemaleHumanModel<>(pContext.bakeLayer(ModModelLayers.FEMALE_HUMAN_LAYER)), 1f);
 
+    }
+    public static class NPCDialogueData {
+        public Map<String, Map<String, String>> npc;
     }
 
     @Override
@@ -33,8 +40,13 @@ public class FemaleHumanRenderer extends MobRenderer<FemaleHumanEntity, FemaleHu
     private void renderNameTag(FemaleHumanEntity entity, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         double yOffset = entity.getBbHeight() + 0.5; // height of the entity + offset
 
-        // Get your custom content here
-        String customText = "Chat Placeholder"; // Or any dynamic value
+        Random rand = new Random();
+
+        //String outerKey = Integer.toString(entity.getDialogueKey());
+        //String innerKey = Integer.toString(rand.nextInt(2)); // Could also be another value stored on the entity
+        String outerKey = "2";
+        String innerKey = Integer.toString(rand.nextInt(2));
+        String customText = NpcReactionManager.getReaction(outerKey, innerKey); // Or any dynamic value
 
         // Don't render if the entity is too far or invisible
         if (this.entityRenderDispatcher.distanceToSqr(entity) > 4096.0D) return;

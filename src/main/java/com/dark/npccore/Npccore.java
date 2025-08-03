@@ -1,6 +1,7 @@
 package com.dark.npccore;
 
 import com.dark.npccore.block.ModBlocks;
+import com.dark.npccore.client.screens.player_talk_overlay_base;
 import com.dark.npccore.entity.ModEntities;
 import com.dark.npccore.entity.client.FemaleHumanRenderer;
 import com.dark.npccore.entity.custom.FemaleHumanEntity;
@@ -8,6 +9,7 @@ import com.dark.npccore.item.ModCreativeModTabs;
 import com.dark.npccore.item.ModItems;
 
 import com.dark.npccore.network.NpccoreModVariables;
+import com.google.gson.Gson;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -33,6 +35,10 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -76,7 +82,6 @@ public class Npccore {
     }
 
 
-
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
@@ -110,6 +115,7 @@ public class Npccore {
             //KeyBindings.registerKeyMappings();
             KeyInputHandler.register();
             NpccoreModVariables.chatLine = 0;
+            NpccoreModVariables.chatRow = 1;
         }
     }
 }

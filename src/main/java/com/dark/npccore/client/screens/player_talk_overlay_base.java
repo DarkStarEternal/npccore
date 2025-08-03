@@ -1,6 +1,8 @@
 package com.dark.npccore.client.screens;
 
 
+
+import com.dark.npccore.client.event.DialogueManager;
 import com.dark.npccore.network.NpccoreModVariables;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -16,12 +18,17 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Mod.EventBusSubscriber({Dist.CLIENT})
 public class player_talk_overlay_base {
     Minecraft mc = Minecraft.getInstance();
     Player player = mc.player;
+
+    public class DialogueData {
+        public Map<String, String> common;
+    }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void eventHandler(RenderGuiEvent.Pre event) {
@@ -38,6 +45,7 @@ public class player_talk_overlay_base {
             y = entity.getY();
             z = entity.getZ();
         }
+
         RenderSystem.disableDepthTest();
         RenderSystem.depthMask(false);
         RenderSystem.enableBlend();
@@ -46,13 +54,23 @@ public class player_talk_overlay_base {
         RenderSystem.setShaderColor(1, 1, 1, 1);
         if (true) {
             event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/npc_bar_middle.png"), 0, 0, 0, 0, 128, 16, 128, 16);
-            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/player_bar_end.png"), 128, 0, 0, 0, 128, 16, 128, 16);
-            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/testing_ground.png"), w / 2 + -57, h / 2 + -29, 0, Mth.clamp((int) NpccoreModVariables.chatLine * 16, 0, 496), 128, 16, 128, 512);
-            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/background_npccore_talking_overlay.png"), 56, 8, 0, 0, 32, 16, 32, 16);
-            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/background_npccore_talking_overlay.png"), 118, 8, 0, 0, 32, 16, 32, 16);
-            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/background_npccore_talking_overlay.png"), 160, 8, 0, 0, 32, 16, 32, 16);
-            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/background_npccore_talking_overlay.png"), 212, 8, 0, 0, 32, 16, 32, 16);
+            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/npc_bar_middle.png"), 128, 0, 0, 0, 128, 16, 128, 16);
+            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/player_bar_end.png"), 256, 0, 0, 0, 128, 16, 128, 16);
+            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/chatbar_commons.png"), 3, 8, 0, Mth.clamp((int) 14  * 16, 0, 496), 128, 16, 128, 512);
+            event.getGuiGraphics().drawString(Minecraft.getInstance().font, DialogueManager.getLine(Integer.toString(NpccoreModVariables.chatLine)), 4, 8, -1, true);
         }
+
+        if (NpccoreModVariables.chatRow == 1) {
+            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/textselected.png"), 0, 4, 0, 0, 134, 22, 134, 22);
+        }
+        else if (NpccoreModVariables.chatRow == 2) {
+            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/textselected.png"), 144, 4, 0, 0, 134, 22, 134, 22);
+        }
+        else if (NpccoreModVariables.chatRow == 3) {
+            event.getGuiGraphics().blit(new ResourceLocation("npccore:textures/screens/textselected.png"), 291, 4, 0, 0, 134, 22, 134, 22);
+        }
+
+
         RenderSystem.depthMask(true);
         RenderSystem.defaultBlendFunc();
         RenderSystem.enableDepthTest();

@@ -1,6 +1,7 @@
 package com.dark.npccore.entity.custom;
 
 import com.dark.npccore.entity.client.FemaleHumanRenderer;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -16,9 +17,13 @@ import net.minecraftforge.client.event.RenderNameTagEvent;
 import org.jetbrains.annotations.Nullable;
 
 public class FemaleHumanEntity extends Monster {
+    private Integer dialogueKey = 0; // Default value
+
     public FemaleHumanEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
+
+
 
     @Override
     protected void registerGoals() {
@@ -39,5 +44,28 @@ public class FemaleHumanEntity extends Monster {
     @Override
     public boolean alwaysAccepts() {
         return super.alwaysAccepts();
+    }
+
+
+    public void setDialogueKey(int key) {
+        this.dialogueKey = key;
+    }
+
+    public int getDialogueKey() {
+        return this.dialogueKey;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putString("DialogueKey", Integer.toString(this.dialogueKey));
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        if (tag.contains("DialogueKey")) {
+            this.dialogueKey = Integer.valueOf(tag.getString("DialogueKey"));
+        }
     }
 }
