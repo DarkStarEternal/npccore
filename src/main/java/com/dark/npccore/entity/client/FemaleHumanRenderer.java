@@ -40,12 +40,8 @@ public class FemaleHumanRenderer extends MobRenderer<FemaleHumanEntity, FemaleHu
     private void renderNameTag(FemaleHumanEntity entity, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         double yOffset = entity.getBbHeight() + 0.5; // height of the entity + offset
 
-        Random rand = new Random();
-
-        //String outerKey = Integer.toString(entity.getDialogueKey());
-        //String innerKey = Integer.toString(rand.nextInt(2)); // Could also be another value stored on the entity
-        String outerKey = "2";
-        String innerKey = Integer.toString(rand.nextInt(2));
+        String outerKey = Integer.toString(entity.getDialogueKey());
+        String innerKey = Integer.toString(entity.getDialogueRandomizer());
         String customText = NpcReactionManager.getReaction(outerKey, innerKey); // Or any dynamic value
 
         // Don't render if the entity is too far or invisible

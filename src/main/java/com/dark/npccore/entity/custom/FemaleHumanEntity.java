@@ -17,7 +17,8 @@ import net.minecraftforge.client.event.RenderNameTagEvent;
 import org.jetbrains.annotations.Nullable;
 
 public class FemaleHumanEntity extends Monster {
-    private Integer dialogueKey = 0; // Default value
+    private Integer dialogueKey = -1; // Default value
+    private Integer dialogueRandomizer = -1; //Randomize the chosen answer from the pool with this value
 
     public FemaleHumanEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -51,8 +52,15 @@ public class FemaleHumanEntity extends Monster {
         this.dialogueKey = key;
     }
 
+    public void setDialogueRandomizer(int randomizer) {
+        this.dialogueRandomizer = randomizer;
+    }
+
     public int getDialogueKey() {
         return this.dialogueKey;
+    }
+    public int getDialogueRandomizer() {
+        return this.dialogueRandomizer;
     }
 
     @Override
